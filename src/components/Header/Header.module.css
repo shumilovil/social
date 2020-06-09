@@ -5,15 +5,16 @@
   border-bottom-right-radius: 5px;
   border-left: solid 1px rgb(214, 209, 209);
   border-right: solid 1px rgb(214, 209, 209);
-  border-bottom: solid 1px rgb(214, 209, 209);
-  padding-left: 50px;
-   
+  border-bottom: solid 1px rgb(214, 209, 209);  
 }
 
 .header img {
-  width: 50px;  
+  width: 50px; 
+  padding-left: 50px; 
 }
 
 .loginBlock {
+  padding-top: 15px;
+  padding-right: 10px;
   float: right;
 }
