@@ -19,10 +19,10 @@ const Dialogs = (props) => {
   const onNewMessageChange = (e) => {
     const body = e.target.value;
     props.updateNewMessageBody(body);
-  }
+  } 
 
-  if (!props.auth) return <Redirect to={'/login'} />
-
+  //if (!props.isAuth) return <Redirect to={"/login"} /> ;
+  
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItems}>
