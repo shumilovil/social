@@ -1,12 +1,15 @@
 import React from 'react';
 
 class ProfileStatus extends React.Component {
-  state = {
-    editMode: false,
-    status: this.props.status
+  constructor(props) {
+    super(props);
+    this.state = {
+      editMode: false,
+      status: this.props.status
+    }
   }
 
-  componentDidUpdate(prevProps, prevState) {        
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.status !== this.props.status) {
       this.setState({
         status: this.props.status
@@ -14,20 +17,18 @@ class ProfileStatus extends React.Component {
     }
   }
 
-
   activateEditMode = () => {
     this.setState({
       editMode: true,
     })
   }
-  
 
   deactivateEditMode = () => {
     this.setState({
       editMode: false
     })
     this.props.updateStatus(this.state.status)
-    
+
   }
 
   onStatusChange = (e) => {
