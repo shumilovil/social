@@ -1,32 +1,11 @@
 .userPhoto {
   max-width: 100px;
   max-height: 200px;
-  border-radius: 20px;
-}
+  border-radius: 20px;}
 
-.selectedPage {
-  font-weight: bold;
-  padding-left: 3px;
-  padding-right: 3px;
-  background-color: black;
-  border-radius: 4px;
-  color: white;
-  font-size: 13px;    
-}
 
-.page {
-  cursor: pointer;
-  padding: 3px;
-  font-size: 13px;  
-}
 
-.page:hover {  
-  color: white;
-  background-color: black;
-  border-radius: 4px;
-}
-
-.users {
+.usersStyle {
   padding: 10px;  
 }
 

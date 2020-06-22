@@ -27,7 +27,7 @@ const MyPosts = (props) => {
 };
 
 
-const myPostsForm = (props) => {
+const myPostsForm = React.memo(props => {
   return (
     <form onSubmit={props.handleSubmit} >
       <div>
@@ -41,7 +41,7 @@ const myPostsForm = (props) => {
       </div>
     </form>
   )
-}
+})
 
 
 const MyPostsFormRedux = reduxForm({ form: 'ProfileAddNewPostForm' })(myPostsForm)
