@@ -1,6 +1,6 @@
 .nav {
   grid-area: n;
-  background-color: burlywood;
+  background-color: white;
   border-radius: 5px;
   border: solid 1px rgb(214, 209, 209);
   padding: 20px;
@@ -8,11 +8,32 @@
 }
 
 .item a {
-  color: white;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  width: 140px;
+  padding-left: 8px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: block;
+  border-radius: 5px;    
+}
+
+.item a:hover {
+  background-color: black;
+  color:white;
   text-decoration: none;
 }
 
-
 a.activeLink {
   color: gold;
+  background-color: black;
+  
 }
+
+.item {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  
+}
+
