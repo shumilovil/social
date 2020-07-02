@@ -23,8 +23,8 @@ const Paginator = ({ totalItemsCount, pageSize, currentPage, portionSize = 10 })
         .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
         .map(p => {
           return (
-            <NavLink to={'/users/' + p} activeClassName={styles.activeLink} >
-              <span key={p} className={styles.page} >
+            <NavLink to={'/users/' + p} activeClassName={styles.activeLink} key={p} >
+              <span className={styles.page} >
                 {p}
               </span>
             </NavLink>
