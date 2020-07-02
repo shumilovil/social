@@ -1,14 +1,14 @@
 import React from 'react';
 import { Input, Textarea } from '../../Common/FormControls/FormControl';
 import { Field, reduxForm } from 'redux-form';
-import s from './ProfileInfo.module.css';
-import style from '../../Common/FormControls/FormsControl.module.css'
+import styles from './ProfileInfo.module.css';
+import styles_form from '../../Common/FormControls/FormsControl.module.css'
 
 
 const ProfileDataForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit} >
-      {props.error && <div className={style.formSummaryError} >{props.error}</div>}
+      {props.error && <div className={styles_form.formSummaryError} >{props.error}</div>}
       
       <div>
         <b>Full name</b>:
@@ -40,7 +40,7 @@ const ProfileDataForm = (props) => {
       <div>
         <b>Contacts</b>: {Object.keys(props.profile.contacts).map(key => {
           return (
-            <div key={key} className={s.contacts}>
+            <div key={key} className={styles.contacts}>
               <b>{key}</b>:
               <Field placeholder={key}
                 name={'contacts.' + key}

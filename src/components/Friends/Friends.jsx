@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './Friends.module.css';
+import styles from './Friends.module.css';
 import { useEffect } from 'react';
 import userPhoto from '../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
@@ -13,17 +13,17 @@ const Friends = (props) => {
 
   const myFriends = props.friends.friendsList.map(f => {
     return (
-      <div className={style.friend} key={f.id} >
+      <div className={styles.friend} key={f.id} >
         <NavLink to={'/profile/' + f.id}>
           <img src={f.photos.large ? f.photos.large : userPhoto} alt='' />
         </NavLink>
-        <div className={style.friendsName} >{f.name}</div>
+        <div className={styles.friendsName} >{f.name}</div>
       </div>
     );
   });
 
   return (
-    <div className={style.friends}>
+    <div className={styles.friends}>
       <h3>Friends</h3>
       {myFriends}
     </div>

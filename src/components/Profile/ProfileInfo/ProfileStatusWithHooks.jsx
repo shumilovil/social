@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import s from './ProfileInfo.module.css';
+import styles from './ProfileInfo.module.css';
 
 const ProfileStatusWithHooks = (props) => {
 
@@ -25,17 +25,17 @@ const ProfileStatusWithHooks = (props) => {
 
   if (!props.isOwner) {
     return (
-      <div className={s.status} >
-        <b>Status</b><span className={s.statusText} >{props.status}</span>
+      <div className={styles.status} >
+        <b>Status</b><span className={styles.statusText} >{props.status}</span>
       </div>
     )
   }
 
   return (
-    <div className={s.status}>
+    <div className={styles.status}>
       {!editMode &&
         <div>
-          <b>Status</b><span onDoubleClick={activateEditMode} className={s.statusText} >{props.status || "-------"}</span><span>(Double click on status to edit)</span>
+          <b>Status</b><span onDoubleClick={activateEditMode} className={styles.statusText} >{props.status || "-------"}</span><span>(Double click on status to edit)</span>
         </div>
       }
       {editMode &&
@@ -44,7 +44,7 @@ const ProfileStatusWithHooks = (props) => {
             autoFocus={true}
             onBlur={deactivateEditMode}
             value={status}
-            className={s.inputField} />
+            className={styles.inputField} />
         </div>
       }
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Users.module.css';
+import styles from './Users.module.css';
 import userPhoto from '../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
 
@@ -8,11 +8,11 @@ import { NavLink } from 'react-router-dom';
 const User = ({ user, followingInProgress, unfollow, follow }) => {
 
   return (
-    <div key={user.id} className={s.userItem} >
+    <div key={user.id} className={styles.userItem} >
       <span>
         <div>
           <NavLink to={'/profile/' + user.id} >
-            <img src={user.photos.large ? user.photos.large : userPhoto} className={s.userPhoto} />
+            <img src={user.photos.large ? user.photos.large : userPhoto} className={styles.userPhoto} />
           </NavLink>
         </div>
         <div>
@@ -24,7 +24,7 @@ const User = ({ user, followingInProgress, unfollow, follow }) => {
       <span>
         <span>
           <div>{user.name}</div>
-          <div className={s.userStatus}>{user.status}</div>
+          <div className={styles.userStatus}>{user.status}</div>
         </span>
         <span>
           <div>{'user.location.country'}</div>

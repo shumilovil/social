@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './MyPosts.module.css';
+import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 import { Field, reduxForm} from 'redux-form';
 import { maxLengthCreator, required } from '../../../utils/validators/validator';
@@ -17,10 +17,10 @@ const MyPosts = (props) => {
   };
 
   return (
-    <div className={s.postsBlock}>
+    <div className={styles.postsBlock}>
       <h3>My posts</h3>
       <MyPostsFormRedux onSubmit={onAddPost} />
-      <div className={s.posts}>
+      <div className={styles.posts}>
         {postsElements}
       </div>
     </div>

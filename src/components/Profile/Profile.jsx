@@ -1,11 +1,11 @@
 import React from 'react';
-import s from './Profile.module.css';
+import styles from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 
 const Profile = (props) => {
   return (
-    <div className={s.profile} >
+    <div className={styles.profile} >
       <ProfileInfo profile={props.profile}
         savePhoto={props.savePhoto}
         isOwner={props.isOwner}

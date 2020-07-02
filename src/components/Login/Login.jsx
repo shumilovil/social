@@ -5,7 +5,7 @@ import { required } from '../../utils/validators/validator';
 import { connect } from 'react-redux';
 import { login } from '../../redux/auth-reducer';
 import { Redirect } from 'react-router-dom';
-import style from '../Common/FormControls/FormsControl.module.css'
+import styles from '../Common/FormControls/FormsControl.module.css'
 
 const LoginForm = (props) => {
   return (
@@ -31,7 +31,7 @@ const LoginForm = (props) => {
     </div>
       {props.captchaUrl && <img src={props.captchaUrl} />}
       {props.captchaUrl && <Field placeholder={"Symbols from image"} name={"captcha"} component={Input} validate={[required]} />}
-      {props.error && <div className={style.formSummaryError} >{props.error}</div>}
+      {props.error && <div className={styles.formSummaryError} >{props.error}</div>}
       <div>
         <button>Login</button>
       </div>
@@ -50,10 +50,12 @@ const Login = (props) => {
     return <Redirect to={'/profile'} />
   };
 
-  return <div>
-    <h1>Login</h1>
-    <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
-  </div>
+  return (
+    <div className={styles.entireForm} >
+      <h1>Login</h1>
+      <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
+    </div>
+  )
 }
 
 const mapStateToProps = (state) => ({

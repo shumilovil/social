@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './ProfileInfo.module.css';
+import styles from './ProfileInfo.module.css';
 import Preloader from '../../Common/Preloader/Preloader';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import userPhoto from '../../../assets/images/user.png';
@@ -32,10 +32,10 @@ const ProfileInfo = (props) => {
   }
 
   return (
-    <div className={s.descriptionBlock}>      
+    <div className={styles.descriptionBlock}>      
 
       <div>
-        <img src={props.profile.photos.large || userPhoto} className={s.mainPhoto} alt='' />
+        <img src={props.profile.photos.large || userPhoto} className={styles.mainPhoto} alt='' />
         {props.isOwner && <div><input type={"file"} onChange={onMainPhotoSelected} /></div>}
       </div>
 
@@ -93,7 +93,7 @@ const ProfileData = (props) => {
 
 const Contacts = (props) => {
   return (
-    <div className={s.contacts} ><b>{props.contactTitle}</b>: {props.contactValue}</div>
+    <div className={styles.contacts} ><b>{props.contactTitle}</b>: {props.contactValue}</div>
   )
 }
 
