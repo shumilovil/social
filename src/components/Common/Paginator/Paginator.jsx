@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from "./Paginator.module.css";
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
-const Paginator = ({ totalItemsCount, pageSize, currentPage, onPageChanged, portionSize = 10 }) => {
+const Paginator = ({ totalItemsCount, pageSize, currentPage, portionSize = 10 }) => {
 
   const pagesCount = Math.ceil(totalItemsCount / pageSize);
   const pages = [];
@@ -21,7 +22,13 @@ const Paginator = ({ totalItemsCount, pageSize, currentPage, onPageChanged, port
       {pages
         .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
         .map(p => {
-          return <span className={currentPage === p ? styles.selectedPage : styles.page} onClick={() => { onPageChanged(p) }}>{p}</span>
+          return (
+            <NavLink to={'/users/' + p}>
+              <span className={currentPage === p ? styles.selectedPage : styles.page} >
+                {p}
+              </span>
+            </NavLink>
+          )
         })}
       {portionCount > portionNumber && <button onClick={() => { setPortionNumber(portionNumber + 1) }}>NEXT</button>}
     </div>

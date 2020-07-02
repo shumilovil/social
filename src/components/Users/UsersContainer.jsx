@@ -6,6 +6,7 @@ import Users from './Users';
 import { compose } from 'redux';
 import { withAuthRedirect } from './../../hoc/withAuthRedirect';
 import { getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress, getUsers } from '../../redux/users-selectors';
+import { withRouter } from 'react-router-dom';
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -13,10 +14,15 @@ class UsersContainer extends React.Component {
     this.props.requestUsers(currentPage, pageSize)
   }
 
-  onPageChanged = (pageNumber) => { 
-    const {pageSize} = this.props;   
-    this.props.requestUsers(pageNumber, pageSize);
-  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.pageNumberParam !== this.props.match.params.pageNumberParam) {
+      let pageNumberParam = this.props.match.params.pageNumberParam;
+      if (!pageNumberParam) {
+        pageNumberParam = this.props.currentPage;
+      };
+      this.props.requestUsers(pageNumberParam, this.props.pageSize);
+    }
+  } 
 
   render() {
     return (
@@ -24,8 +30,7 @@ class UsersContainer extends React.Component {
         {this.props.isFetching ? <Preloader /> : null}
         <Users totalUsersCount={this.props.totalUsersCount}
           pageSize={this.props.pageSize}
-          currentPage={this.props.currentPage}
-          onPageChanged={this.onPageChanged}
+          currentPage={this.props.currentPage}          
           unfollow={this.props.unfollow}
           follow={this.props.follow}
           users={this.props.users}
@@ -49,5 +54,7 @@ const mapStateToProps = (state) => {
 
 export default compose(
   connect(mapStateToProps, { follow, unfollow, requestUsers }),
-  withAuthRedirect
+  withAuthRedirect,
+  withRouter
 )(UsersContainer);
+

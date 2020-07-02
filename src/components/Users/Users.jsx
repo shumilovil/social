@@ -4,13 +4,12 @@ import Paginator from '../Common/Paginator/Paginator';
 import User from './User';
 
 
-const Users = ({ currentPage, totalUsersCount, pageSize, onPageChanged, users, ...props }) => {
+const Users = ({ currentPage, totalUsersCount, pageSize, users, ...props }) => {
 
   return (
     <div className={s.usersStyle} >
 
       <Paginator currentPage={currentPage}
-        onPageChanged={onPageChanged}
         totalItemsCount={totalUsersCount}
         pageSize={pageSize} />
 
