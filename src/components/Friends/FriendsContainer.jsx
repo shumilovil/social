@@ -4,7 +4,7 @@ import { getFriends } from '../../redux/friends-reducer';
 
 const mapStateToProps = (state) => {
   return {
-    friends: state.friends
+    friends: state.friends.friendsList
   }
 }
 

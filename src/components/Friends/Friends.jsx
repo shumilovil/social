@@ -7,11 +7,12 @@ import { NavLink } from 'react-router-dom';
 
 const Friends = (props) => {
 
-  useEffect(() => {
+  useEffect(() => {    
+    console.log('useeffect');    
     props.getFriends()
-  }, [props.friends]);
+  }, []);
 
-  const myFriends = props.friends.friendsList.map(f => {
+  const myFriends = props.friends.map(f => {
     return (
       <div className={styles.friend} key={f.id} >
         <NavLink to={'/profile/' + f.id}>

@@ -7,7 +7,7 @@ const Preloader = () => {
   return (
     <div className={styles.preloaderWrapper}>
       <div className={styles.preloader}>
-        <img src={preloaderImg} />
+        <img src={preloaderImg} alt='' />
       </div>
     </div>
   );
