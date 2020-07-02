@@ -6,14 +6,16 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const DELETE_POST = 'DELETE_POST';
 const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
+const SET_FOLLOWING_STATUS = 'SET_FOLLOWING_STATUS'
 
 const initialState = {
   posts: [
-    { id: 1, message: 'Hi', likesCount: 0 },
-    { id: 2, message: 'Bye', likesCount: 23 }
+    { id: 1, message: 'First post', likesCount: 0 },
+    { id: 2, message: 'Second post', likesCount: 23 }
   ],
   profile: null,
-  status: ''
+  status: '',
+  followed: null
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -49,6 +51,11 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         profile: { ...state.profile, photos: action.photos }
       }
+    case SET_FOLLOWING_STATUS:
+      return {
+        ...state,
+        followed: action.followingStatus
+      }
     default:
       return state;
   }
@@ -58,11 +65,14 @@ export const addPostActionCreator = (newPostText) => ({ type: ADD_POST, newPostT
 export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
-export const savePhotoSuccess = (photos) => ({type: SAVE_PHOTO_SUCCESS, photos})
+export const savePhotoSuccess = (photos) => ({ type: SAVE_PHOTO_SUCCESS, photos })
+export const setFollowingStatus = (followingStatus) => ({ type: SET_FOLLOWING_STATUS, followingStatus })
+
 
 export const getUserProfile = (userId) => async (dispatch) => {
   const response = await profileAPI.getProfile(userId);
   dispatch(setUserProfile(response.data));
+  dispatch(getFollowingStatus(userId))
 };
 
 export const getStatus = (userId) => async (dispatch) => {
@@ -77,21 +87,26 @@ export const updateStatus = (status) => async (dispatch) => {
   };
 };
 
+export const getFollowingStatus = (userId) => async (dispatch) => {
+  const response = await profileAPI.getFollowingStatus(userId);
+  dispatch(setFollowingStatus(response));
+}
+
 export const savePhoto = (file) => async (dispatch) => {
   const response = await profileAPI.savePhoto(file);
   if (response.data.resultCode === 0) {
-      dispatch(savePhotoSuccess(response.data.data.photos));
+    dispatch(savePhotoSuccess(response.data.data.photos));
   }
 }
 
 export const saveProfile = (profile) => async (dispatch, getState) => {
   const userId = getState().auth.userId;
   const response = await profileAPI.saveProfile(profile);
-  
+
   if (response.data.resultCode === 0) {
     dispatch(getUserProfile(userId))
   } else {
-    dispatch(stopSubmit("edit-profile", {_error: response.data.messages[0] }));
+    dispatch(stopSubmit("edit-profile", { _error: response.data.messages[0] }));
     return Promise.reject(response.data.messages[0]);
   }
 }

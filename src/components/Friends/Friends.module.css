@@ -1,11 +1,19 @@
 .friend img {
-  width: 30px;
-  border-radius: 100%;
+  width: 30px;  
   display: block;
+  margin: 0 auto; 
+  border-radius: 5px; 
 }
 
 .friend {
+  text-align: center;
   padding: 5px;
   display: inline-block;
   font-size: 12px;
+  width: 60px;
+}
+
+.friendsName {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

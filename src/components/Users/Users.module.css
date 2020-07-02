@@ -1,7 +1,8 @@
 .userPhoto {
   max-width: 100px;
   max-height: 200px;
-  border-radius: 20px;}
+  border-radius: 20px;
+}
 
 
 
@@ -11,5 +12,11 @@
 
 .userItem {  
   padding-top: 8px;
-  padding-bottom: 12px;  
+  padding-bottom: 12px;
+  width: 400px;  
+}
+
+.userStatus {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

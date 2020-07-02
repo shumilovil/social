@@ -1,7 +1,15 @@
 .item {
-  color: greenyellow;
+  padding: 8px;
 }
 
 .item img {
   width: 50px;
+  border-radius: 5px;
+  vertical-align: middle;
+}
+
+.message {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 8px;
 }

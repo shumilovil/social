@@ -21,6 +21,11 @@ export const userAPI = {
 
   follow(userId) {
     return instance.post(`follow/${userId}`);
+  },
+
+  getFriends() {
+    return instance.get('users/?friend=true')
+    .then(response => response.data.items)
   }
 };
 
@@ -66,6 +71,10 @@ export const profileAPI = {
 
   saveProfile(profile) {
     return instance.put('profile', profile)
+  },
+
+  getFollowingStatus(userId) {
+    return instance.get(`follow/${userId}`).then(response => response.data)
   }
 }
 

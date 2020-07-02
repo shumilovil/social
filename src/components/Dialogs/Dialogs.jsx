@@ -20,7 +20,7 @@ const Dialogs = (props) => {
   const onSendMessageClick = (formData) => {
     props.sendMessage(formData.newMessageBody);    
   }
-  //if (!props.isAuth) return <Redirect to={"/login"} /> ;
+  
 
   return (
     <div className={s.dialogs}>

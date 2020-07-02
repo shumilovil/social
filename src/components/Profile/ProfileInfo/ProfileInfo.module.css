@@ -4,6 +4,7 @@
 
 .mainPhoto {
   max-width: 200px;
+  border-radius: 20px;
 }
 
 .statusText {
@@ -12,4 +13,9 @@
 
 .contacts {
   padding-left: 10px;
+}
+
+.status {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

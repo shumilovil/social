@@ -5,6 +5,7 @@ import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import userPhoto from '../../../assets/images/user.png';
 import { useState } from 'react';
 import ProfileDataFormReduxForm from './ProfileDataForm';
+import MyPostsContainer from '../MyPosts/MyPostsContainer';
 
 
 
@@ -31,11 +32,16 @@ const ProfileInfo = (props) => {
   }
 
   return (
-    <div className={s.descriptionBlock}>
+    <div className={s.descriptionBlock}>      
+
       <div>
         <img src={props.profile.photos.large || userPhoto} className={s.mainPhoto} alt='' />
-        {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected} />}
+        {props.isOwner && <div><input type={"file"} onChange={onMainPhotoSelected} /></div>}
       </div>
+
+      <ProfileStatusWithHooks status={props.status}
+        updateStatus={props.updateStatus}
+        isOwner={props.isOwner} />        
 
       {editMode
         ? <ProfileDataFormReduxForm initialValues={props.profile} profile={props.profile} onSubmit={onSubmit} />
@@ -43,8 +49,15 @@ const ProfileInfo = (props) => {
           profile={props.profile}
           isOwner={props.isOwner} />}
 
-      <ProfileStatusWithHooks status={props.status}
-        updateStatus={props.updateStatus} />
+      {!props.isOwner &&
+        <div>
+          {props.followed
+            ? <button disabled={props.followingInProgress.some(id => id === props.profile.userId)} onClick={() => { props.unfollow(props.profile.userId) }}>Unfollow</button>
+            : <button disabled={props.followingInProgress.some(id => id === props.profile.userId)} onClick={() => { props.follow(props.profile.userId) }}>Follow</button>}
+        </div>} 
+
+        {props.isOwner && <MyPostsContainer />}       
+
     </div>
   );
 };
@@ -52,7 +65,6 @@ const ProfileInfo = (props) => {
 const ProfileData = (props) => {
   return (
     <div>
-      {props.isOwner && <div><button onClick={props.goToEditMode} >edit</button></div>}
       <div>
         <b>Full name</b>: {props.profile.fullName}
       </div>
@@ -72,6 +84,7 @@ const ProfileData = (props) => {
           return <Contacts key={key} contactTitle={key} contactValue={props.profile.contacts[key]} />
         })}
       </div>
+      {props.isOwner && <div><button onClick={props.goToEditMode} >Edit profile</button></div>}
     </div>
   )
 }

@@ -9,7 +9,7 @@ const ProfileDataForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit} >
       {props.error && <div className={style.formSummaryError} >{props.error}</div>}
-      <div><button>save</button></div>
+      
       <div>
         <b>Full name</b>:
         <Field placeholder="Full name"
@@ -49,6 +49,8 @@ const ProfileDataForm = (props) => {
           )
         })}
       </div>
+      <br/>
+      <div><button>save</button></div>
     </form>
   )
 }

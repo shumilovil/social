@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getUserProfile, updateStatus, getStatus, savePhoto, saveProfile } from '../../redux/profile-reducer'
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
+import { follow, unfollow } from '../../redux/users-reducer';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
 class ProfileContainer extends React.Component {
 
@@ -13,10 +15,7 @@ class ProfileContainer extends React.Component {
       userId = this.props.authorizedUserId;
     };
     this.props.getUserProfile(userId);
-    this.props.getStatus(userId);
-    if (!userId) {
-      this.props.history.push('/login');
-    }
+    this.props.getStatus(userId);    
   }
 
   componentDidMount() {
@@ -36,7 +35,11 @@ class ProfileContainer extends React.Component {
         updateStatus={this.props.updateStatus}
         savePhoto={this.props.savePhoto}
         isOwner={!this.props.match.params.userId}
-        saveProfile={this.props.saveProfile} />
+        saveProfile={this.props.saveProfile}        
+        followed={this.props.followed}
+        followingInProgress={this.props.followingInProgress}
+        follow={this.props.follow}
+        unfollow={this.props.unfollow}/>
     )
   }
 };
@@ -46,11 +49,17 @@ const mapStateToProps = (state) => {
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     authorizedUserId: state.auth.userId,
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,   
+    followed: state.profilePage.followed,
+    followingInProgress: state.usersPage.followingInProgress
+
   }
 }
 
 export default compose(
-  connect(mapStateToProps, { getUserProfile, updateStatus, getStatus, savePhoto, saveProfile }),
-  withRouter
+  connect(mapStateToProps, { getUserProfile, updateStatus, getStatus, savePhoto, saveProfile, follow, unfollow }),
+  withRouter,
+  withAuthRedirect
 )(ProfileContainer);
+
+

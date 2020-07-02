@@ -1,4 +1,6 @@
 import { userAPI } from './../api/api';
+import { getFriends } from './friends-reducer';
+import { getFollowingStatus } from './profile-reducer';
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -97,6 +99,8 @@ export const unfollow = (userId) => {
     if (response.data.resultCode === 0) {
       dispatch(unfollowSucces(userId));
     };
+    dispatch(getFriends());
+    dispatch(getFollowingStatus(userId));
     dispatch(toggleFollowingProgress(false, userId));
   };
 };
@@ -108,6 +112,8 @@ export const follow = (userId) => {
     if (response.data.resultCode === 0) {
       dispatch(followSucces(userId));
     };
+    dispatch(getFriends());
+    dispatch(getFollowingStatus(userId));
     dispatch(toggleFollowingProgress(false, userId));
   };
 };
